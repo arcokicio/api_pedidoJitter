@@ -3,7 +3,7 @@ const router = express.Router();
 const OrderController = require('../controllers/OrderController');
 const jwt = require('jsonwebtoken');
 
-const SECRET_KEY = "thiago";
+const SECRET_KEY = "sua_chave_secreta_aqui"; // Substitua por uma chave segura em produção
 
 // Middleware de Autenticação JWT
 function verificarToken(req, res, next) {
@@ -24,3 +24,4 @@ router.put('/:id', verificarToken, OrderController.atualizarPedido);
 router.delete('/:id', verificarToken, OrderController.deletarPedido);
 
 module.exports = router;
+
