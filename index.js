@@ -34,7 +34,7 @@ const swaggerOptions = {
     },
     security: [{ bearerAuth: [] }],
     // Mapeando as rotas diretamente aqui, sem erro de digitação!
-    paths: {
+   paths: {
       "/login": {
         post: {
           summary: "Gera o Token JWT de Autenticação",
@@ -70,6 +70,36 @@ const swaggerOptions = {
           summary: "Lista todos os pedidos",
           tags: ["Orders"],
           responses: { "200": { description: "Sucesso" } }
+        }
+      },
+      "/order/{id}": {
+        get: {
+          summary: "Busca um pedido pelo ID",
+          tags: ["Orders"],
+          parameters: [{ name: "id", in: "path", required: true, schema: { type: "string" } }],
+          responses: { "200": { description: "Sucesso" } }
+        },
+        put: {
+          summary: "Atualiza um pedido",
+          tags: ["Orders"],
+          parameters: [{ name: "id", in: "path", required: true, schema: { type: "string" } }],
+          requestBody: {
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  example: { "value": 500.0, "creationDate": "2024-01-01" }
+                }
+              }
+            }
+          },
+          responses: { "200": { description: "Atualizado com sucesso" } }
+        },
+        delete: {
+          summary: "Remove um pedido",
+          tags: ["Orders"],
+          parameters: [{ name: "id", in: "path", required: true, schema: { type: "string" } }],
+          responses: { "200": { description: "Removido com sucesso" } }
         }
       }
     }
